@@ -12,6 +12,29 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  */
 
+ // Load custom CSS & JS files
+function jksn_load_plugin_scripts(){
+	$plugin_url = plugin_dir_url(_FILE_);
+	
+	// CSS
+	wp_enqueue_style(
+		'custom-css',
+		$plugin_url . 'custom.css',
+		array(),
+		filemtime(plugin_dir_path(_FILE_) . 'custom.css')
+	);
+	
+	// JS
+	wp_enqueue_script(
+		'custom-js',
+		$plugin_url . 'custom.js',
+		array('jquery'),
+		filemtime(plugin_dir_path(_FILE_) . 'custom.js'),
+		true
+	);
+}
+add_action('wp_enqueue_scripts', 'jksn_load_plugin_scripts');
+
 // Year Shortcode
 function jksn_year_shortcode(){
 	$year = date('Y');
