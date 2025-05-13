@@ -50,3 +50,8 @@ function example_content_function(){
 }
 add_shortcode('example', 'example_content_function');
 
+function admin_menu_option(){
+	add_menu_page('Header & Footer Scripts', 'Site Scripts', 'manage_options', 'admin-menu', 'admin_page', '', 200);
+	/*Args - Title, WP Menu item, role with access, slug, callback function, icon , left side display*/
+}
+add_action('admin_menu', 'admin_menu_option');
