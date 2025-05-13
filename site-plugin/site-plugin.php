@@ -57,6 +57,17 @@ function admin_menu_option(){
 add_action('admin_menu', 'admin_menu_option');
 
 function admin_page(){
+	if(array_key_exists('submit_scripts_update', $_POST)){
+		update_option('db_header_scripts',$_POST['header_scripts']);
+		update_option('db_footer_scripts',$_POST['footer_scripts']);
+
+		?>
+		<div id="setting-error-settings-updated" class="updated settings-error notice is-dismissible">
+			<strong>Settings have been saved.</strong>
+		</div>	
+		<?php
+	}
+
 	$header_scripts = get_option('db_header_scripts', 'none');
 	$footer_scripts = get_option('db_footer_scripts', 'none');
 
@@ -64,15 +75,17 @@ function admin_page(){
 	<div class="wrap">
 		<!-- default class for admin page wrapper -->
 		<h2>Update Scripts</h2>
-		<label for="header_scripts">Header Scripts</label>
-		<textarea name="header_scripts" class="large-text">
-			<?php print $header_scripts; ?>
-		</textarea>
-		<label for="footer_scripts">Footer Scripts</label>
-		<textarea name="footer_scripts" class="large-text">
-			<?php print $footer_scripts; ?>
-		</textarea>
-		<input type="submit" name="submit_scripts_update" value="UPDATE SCRIPTS" class="button button-primary">
+		<form method="post" action="">
+			<label for="header_scripts">Header Scripts</label>
+			<textarea name="header_scripts" class="large-text">
+				<?php print $header_scripts; ?>
+			</textarea>
+			<label for="footer_scripts">Footer Scripts</label>
+			<textarea name="footer_scripts" class="large-text">
+				<?php print $footer_scripts; ?>
+			</textarea>
+			<input type="submit" name="submit_scripts_update" value="UPDATE SCRIPTS" class="button button-primary">
+		</form>
 	</div>
 	<?php
 }
