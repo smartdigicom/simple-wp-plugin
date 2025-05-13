@@ -41,3 +41,12 @@ function jksn_year_shortcode(){
 	return $year;
 }
 add_shortcode('year', 'jksn_year_shortcode');
+
+// Following Joshua Herbison's Tutorial
+function example_content_function(){
+	$content = "<p>Oh boy! Example content.</p>";
+	return $content;
+	/* Return ensures content will load right at the shortcode location */
+}
+add_shortcode('example', 'example_content_function');
+
