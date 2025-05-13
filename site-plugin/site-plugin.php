@@ -55,3 +55,24 @@ function admin_menu_option(){
 	/*Args - Title, WP Menu item, role with access, slug, callback function, icon , left side display*/
 }
 add_action('admin_menu', 'admin_menu_option');
+
+function admin_page(){
+	$header_scripts = get_option('db_header_scripts', 'none');
+	$footer_scripts = get_option('db_footer_scripts', 'none');
+
+	?>
+	<div class="wrap">
+		<!-- default class for admin page wrapper -->
+		<h2>Update Scripts</h2>
+		<label for="header_scripts">Header Scripts</label>
+		<textarea name="header_scripts" class="large-text">
+			<?php print $header_scripts; ?>
+		</textarea>
+		<label for="footer_scripts">Footer Scripts</label>
+		<textarea name="footer_scripts" class="large-text">
+			<?php print $footer_scripts; ?>
+		</textarea>
+		<input type="submit" name="submit_scripts_update" value="UPDATE SCRIPTS" class="button button-primary">
+	</div>
+	<?php
+}
