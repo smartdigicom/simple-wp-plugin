@@ -50,6 +50,7 @@ function example_content_function(){
 }
 add_shortcode('example', 'example_content_function');
 
+// Creates a menu item that allows for scripts to be added in header/footer by pasting in wp back end
 function admin_menu_option(){
 	add_menu_page('Header & Footer Scripts', 'Site Scripts', 'manage_options', 'admin-menu', 'admin_page', '', 200);
 	/*Args - Title, WP Menu item, role with access, slug, callback function, icon , left side display*/
@@ -89,3 +90,15 @@ function admin_page(){
 	</div>
 	<?php
 }
+
+function display_header_scripts(){
+	$header_scripts = get_option('db_header_scripts', 'none');
+	print $header_scripts;
+}
+add_action('wp_head', 'display_header_scripts');
+
+function display_footer_scripts(){
+	$footer_scripts = get_option('db_footer_scripts', 'none');
+	print $footer_scripts;
+}
+add_action('wp_foot', 'display_footer_scripts');
