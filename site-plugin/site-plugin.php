@@ -102,3 +102,26 @@ function display_footer_scripts(){
 	print $footer_scripts;
 }
 add_action('wp_foot', 'display_footer_scripts');
+
+function ohana_contactForm(){
+	$content = '';
+
+	$content .= '<form method="post" action="http://example.com/thank-you/">';
+		$content .= '<input type="text" name="full_name" placeholder="Your Full Name" />';
+		$content .= '<br />';
+
+		$content .= '<input type="text" name="email_address" placeholder="Email Address" />';
+		$content .= '<br />';
+
+		$content .= '<input type="text" name="phone_number" placeholder="Phone Number" />';
+		$content .= '<br />';
+
+		$content .= '<textarea name="comments" placeholder="Give us your comments"></textarea>';
+		$content .= '<br />';
+
+		$content .= '<input type="submit" name="ohana_submit_form" value="SUBMIT FORM">';
+
+	$content .= '</form>';
+	return $content;
+}
+add_shortcode('ohana_contact_form','ohana_contactForm');
